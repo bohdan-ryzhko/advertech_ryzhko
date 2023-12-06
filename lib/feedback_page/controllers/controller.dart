@@ -43,13 +43,17 @@ class FeedbackFormController extends ChangeNotifier {
       _feedback = AsyncSnapshot.withData(ConnectionState.done, response);
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Send message success!")),
+        const SnackBar(
+          content: Text("Send message success!"),
+          backgroundColor: Color.fromARGB(255, 96, 146, 32),
+        ),
       );
     } catch (error) {
       _feedback = AsyncSnapshot.withError(ConnectionState.done, error);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text("Message was not sent, please try again later"),
+          backgroundColor: Color.fromARGB(255, 153, 36, 27),
         ),
       );
     } finally {
