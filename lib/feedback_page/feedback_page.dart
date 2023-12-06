@@ -1,3 +1,4 @@
+import 'package:advertech_ryzhko/feedback_page/components/feedback_form.dart';
 import 'package:flutter/material.dart';
 
 class FeedbackPage extends StatefulWidget {
@@ -14,11 +15,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
       appBar: AppBar(
         title: const Text('Contact us'),
       ),
-      body: const Center(
-        child: Text(
-          "Feedback page",
-        ),
-      ),
+      body: const FeedbackForm(),
     );
   }
 }

@@ -22,6 +22,7 @@ class FeedbackFormController extends ChangeNotifier {
     required String name,
     required String email,
     required String message,
+    required BuildContext context,
   }) async {
     try {
       Future.microtask(() {
@@ -40,11 +41,25 @@ class FeedbackFormController extends ChangeNotifier {
       );
 
       _feedback = AsyncSnapshot.withData(ConnectionState.done, response);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Send message success!")),
+      );
     } catch (error) {
       _feedback = AsyncSnapshot.withError(ConnectionState.done, error);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Message was not sent, please try again later"),
+        ),
+      );
     } finally {
       _isLoad = false;
       notifyListeners();
     }
+  }
+
+  void clearFeedback() {
+    _feedback = const AsyncSnapshot.nothing();
+    notifyListeners();
   }
 }

@@ -1,8 +1,21 @@
-import 'package:advertech_ryzhko/feedback_page/feedback_page.dart';
+import 'package:advertech_ryzhko/feedback_page/controllers/controller.dart';
+import 'package:advertech_ryzhko/feedback_page/repository/repository.dart';
+import 'package:advertech_ryzhko/feedback_page/service/service.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:advertech_ryzhko/feedback_page/feedback_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => FeedbackFormController(service: Service(Repository())),
+        )
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
